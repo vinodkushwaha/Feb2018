@@ -166,7 +166,7 @@ func (t *CustomerChaincode)  GetCustomerDetails(stub shim.ChaincodeStubInterface
 }
 
 func main() {
-	err := shim.Start(new(CustomerChaincode))
+	err := shim.Start(new(SimpleChaincode))
 	if err != nil {
 		fmt.Printf("Error starting Customer Simple chaincode: %s", err)
 	}
