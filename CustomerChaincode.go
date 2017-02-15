@@ -1,7 +1,3 @@
-/*
-Copyright Capgemini India. 2016 All Rights Reserved.
-*/
-
 package main
 
 import (
