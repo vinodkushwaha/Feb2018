@@ -96,9 +96,6 @@ func (t *CustomerChaincode) Init(stub shim.ChaincodeStubInterface, function stri
 // Add customer data for the policy
 func (t *CustomerChaincode) Invoke(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
     
-	var TAX_IDENTIFIER string // Entities
-	var UNIQUE_IDENTIFIER string
-
     var err error
 	
     fmt.Printf("********Invoke Call with args length :%s\n", len(args))
