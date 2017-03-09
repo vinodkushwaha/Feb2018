@@ -106,7 +106,7 @@ func (t *CustomerChaincode) Invoke(stub shim.ChaincodeStubInterface, function st
 	    fmt.Printf("********Inside Invoke length:%s\n", len(args))
 		return nil, errors.New("Incorrect number of arguments. Need 31 arguments")
 	}
-	
+	return nil, err
 }
 
 
