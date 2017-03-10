@@ -100,20 +100,16 @@ func (t *CustomerChaincode) Init(stub shim.ChaincodeStubInterface, function stri
 }
 
 // Add customer data for the policy
-func (t *CustomerChaincode) Invoke(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
+func Invoke(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
 
-m := Message{"Alice", "Hello", 1294706395881547000}
-
-b, err := json.Marshal(m)
-
-var resAsBytess []byte
     fmt.Printf("********Invoke Call with args length :%s\n", len(args))
-	if (len(args) < 31 && err == nil) {
-	   return b, errors.New("Incorrect number of arguments. Need 31 arguments")
+	if len(args) < 31  {
+	 return os.NewError("Incorrect number of arguments. Need 31 arguments")
+	  // return nil, errors.New("Incorrect number of arguments. Need 31 arguments")
 	}else{
-		return resAsBytess, nil
+		return nil
 	}
-	return b, nil	
+	return nil
 	
 }
 
