@@ -105,14 +105,7 @@ func (t *CustomerChaincode) Invoke(stub shim.ChaincodeStubInterface, function st
 	if len(args) != 31 {
 		return nil, errors.New("Incorrect number of arguments. Expecting 31 parameters to query")
 	}
-	
-	resAsBytes, err = t.GetCustomerDetails(stub,"","","","", "", "")
-        InitLogs(ioutil.Discard, os.Stdout, os.Stdout, os.Stderr)
-        Trace.Println("I have something standard to say")
-        Info.Println("Special Information")
-        Warning.Println("There is something you need to know about")
-        Error.Println("Something has failed")
-	
+
 	file, err := os.OpenFile("file.txt", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
         if err != nil {
 		Error.Println("Failed to open log file : ", err)
