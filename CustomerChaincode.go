@@ -103,7 +103,7 @@ var resAsBytess []byte
 	}else{
 		return resAsBytess, nil
 	}
-		
+	return nil, nil	
 	
 }
 
