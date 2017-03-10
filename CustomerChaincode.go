@@ -26,6 +26,12 @@ var (
     Error   *log.Logger
 )
 
+type Message struct {
+    Name string
+    Body string
+    Time int64
+}
+
 type CustomerDoc struct {
     DOCUMENT_NAME string `json:"DOCUMENT_NAME"`
 	DOCUMENT_STRING string `json:"DOCUMENT_STRING"`
@@ -95,15 +101,19 @@ func (t *CustomerChaincode) Init(stub shim.ChaincodeStubInterface, function stri
 
 // Add customer data for the policy
 func (t *CustomerChaincode) Invoke(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
+
+m := Message{"Alice", "Hello", 1294706395881547000}
+
+b, err := json.Marshal(m)
+
 var resAsBytess []byte
     fmt.Printf("********Invoke Call with args length :%s\n", len(args))
-	if (len(args) < 31 && len(resAsBytess)< 1){
-	    fmt.Printf("ncorrect number of arguments. Need 31 arguments\n")
-		//return nil, errors.New("Incorrect number of arguments. Need 31 arguments")
+	if len(args) < 31 {
+	   return b, errors.New("Incorrect number of arguments. Need 31 arguments")
 	}else{
 		return resAsBytess, nil
 	}
-	return nil, nil	
+	return b, nil	
 	
 }
 
