@@ -106,7 +106,8 @@ func (t *CustomerChaincode) Invoke(stub shim.ChaincodeStubInterface, function st
 		return nil, errors.New("Incorrect number of arguments. Expecting 31 parameters to query")
 	}
 	
-	    InitLogs(ioutil.Discard, os.Stdout, os.Stdout, os.Stderr)
+	resAsBytes, err = t.GetCustomerDetails(stub,"","","","", "", "")
+        InitLogs(ioutil.Discard, os.Stdout, os.Stdout, os.Stderr)
         Trace.Println("I have something standard to say")
         Info.Println("Special Information")
         Warning.Println("There is something you need to know about")
