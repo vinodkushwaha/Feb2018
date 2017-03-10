@@ -108,7 +108,7 @@ b, err := json.Marshal(m)
 
 var resAsBytess []byte
     fmt.Printf("********Invoke Call with args length :%s\n", len(args))
-	if (len(args) < 31 && err == nill) {
+	if (len(args) < 31 && err == nil) {
 	   return b, errors.New("Incorrect number of arguments. Need 31 arguments")
 	}else{
 		return resAsBytess, nil
