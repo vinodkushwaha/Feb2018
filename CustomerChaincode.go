@@ -104,13 +104,12 @@ func Invoke(function string, args []string) ([]byte, error) {
 
     fmt.Printf("********Invoke Call with args length :%s\n", len(args))
 	if len(args) < 31  {
-	 return os.NewError("Incorrect number of arguments. Need 31 arguments")
+	 return errors.NewError("Incorrect number of arguments. Need 31 arguments")
 	  // return nil, errors.New("Incorrect number of arguments. Need 31 arguments")
 	}else{
 		return nil
 	}
-	return nil
-	
+
 }
 
 
