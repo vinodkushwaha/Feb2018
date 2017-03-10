@@ -100,7 +100,7 @@ func (t *CustomerChaincode) Init(stub shim.ChaincodeStubInterface, function stri
 }
 
 // Add customer data for the policy
-func Invoke(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
+func Invoke(function string, args []string) ([]byte, error) {
 
     fmt.Printf("********Invoke Call with args length :%s\n", len(args))
 	if len(args) < 31  {
