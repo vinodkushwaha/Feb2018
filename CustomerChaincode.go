@@ -99,15 +99,44 @@ func (t *CustomerChaincode) Init(stub shim.ChaincodeStubInterface, function stri
 
 // Add customer data for the policy
 func (t *CustomerChaincode) Invoke(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
-var resAsBytess []byte
-    fmt.Printf("********Invoke Call with args length :%s\n", len(args))
-	if len(args) < 31 {
-	    fmt.Printf("incorrect number of arguments. Need 31 arguments\n")
-		return nil, errors.New("Incorrect number of arguments. Need 31 arguments")
-	}else{
-		return resAsBytess, nil
+	var err error
+	var resAsBytes []byte
+
+	if len(args) != 31 {
+		return nil, errors.New("Incorrect number of arguments. Expecting 31 parameters to query")
 	}
-}
+	CUSTOMER_FIRST_NAME= args[0]
+	CUSTOMER_MIDDLE_NAME= args[1]
+	CUSTOMER_LAST_NAME = args[2]
+	CUSTOMER_DOB = args[3]
+	TAX_IDENTIFIER = args[4]
+	UNIQUE_IDENTIFIER = args[5]
+	
+	resAsBytes, err = t.GetCustomerDetails(stub,CUSTOMER_FIRST_NAME,CUSTOMER_MIDDLE_NAME,CUSTOMER_LAST_NAME,CUSTOMER_DOB, TAX_IDENTIFIER, UNIQUE_IDENTIFIER)
+        InitLogs(ioutil.Discard, os.Stdout, os.Stdout, os.Stderr)
+        Trace.Println("I have something standard to say")
+        Info.Println("Special Information")
+        Warning.Println("There is something you need to know about")
+        Error.Println("Something has failed")
+	
+	file, err := os.OpenFile("file.txt", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+        if err != nil {
+		Error.Println("Failed to open log file : ", err)
+         }
+        var MyFile  *log.Logger
+        MyFile = log.New(file,
+        "PREFIX: ",
+        log.Ldate|log.Ltime|log.Lshortfile)
+	MyFile.Println("Special Information in Myfile")
+	fmt.Printf("Query Response:%s\n", resAsBytes)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return resAsBytes, nil
+	
+	}
 
 
 func (t *CustomerChaincode)  RegisterCustomer(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
